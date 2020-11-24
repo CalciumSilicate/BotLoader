@@ -54,7 +54,7 @@ else:
     with open(config_path, 'r') as configfile:
         config = json.load(configfile)
     try:
-        print(config['auto_list'])
+        tmp = config['auto_list']
     except KeyError:
         config['auto_list'] = []
         with open(config_path, 'w') as configfile:
@@ -840,9 +840,5 @@ def on_server_startup(server):
     config = read()
     setting_list = list(config['loader'].keys())
     player_list = []
-    print('start_up')
     for setting_name in config['auto_list']:
-        print(setting_name)
         spawn_setting(server, Cls, setting_name=setting_name)
-
-    print('goodbye')
